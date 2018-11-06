@@ -22,6 +22,12 @@ public class BankClient  implements Serializable {
         this.name = name;
     }
 
+    public BankClient(String name, BigDecimal balance, boolean premierCursomer) {
+        this.name = name;
+        this.balance = balance;
+        this.premierCursomer = premierCursomer;
+    }
+
     public int getId() {
         return id;
     }
