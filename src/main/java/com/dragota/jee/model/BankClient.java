@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 public class BankClient  implements Serializable {
@@ -13,14 +14,10 @@ public class BankClient  implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    private boolean premierCursomer;
     private BigDecimal balance;
+    private boolean premierCursomer;
 
     public BankClient() {}
-
-    public BankClient(String name) {
-        this.name = name;
-    }
 
     public BankClient(String name, BigDecimal balance, boolean premierCursomer) {
         this.name = name;
@@ -65,9 +62,25 @@ public class BankClient  implements Serializable {
         return "BankClient{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", premierCursomer=" + (premierCursomer?"Premier Customer":"Standard Customer") +
                 ", balance=" + balance +
+                ", premierCursomer=" + premierCursomer +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BankClient that = (BankClient) o;
+        return getId() == that.getId() &&
+                isPremierCursomer() == that.isPremierCursomer() &&
+                Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getBalance(), that.getBalance());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getBalance(), isPremierCursomer());
     }
 }
 
