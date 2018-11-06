@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dragota-jee-rest-api</artifactId>
+    <groupId>com.dragota.jee</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>A Java EE Webapp with JAX-RS API</name>
+
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <tomee.version>7.1.0</tomee.version>
+        <javaee-api.version>7.0</javaee-api.version>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <artifactId>javaee-api</artifactId>
+            <groupId>javax</groupId>
+            <version>${javaee-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.tomee/openejb-core -->
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-core</artifactId>
+            <version>7.0.3</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <groupId>org.apache.tomee.maven</groupId>
+                <version>${tomee.version}</version>
+                <configuration>
+                    <context>ROOT</context>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
